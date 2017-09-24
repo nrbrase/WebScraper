@@ -6,22 +6,22 @@ Assuming you have a mac, open terminal and follow the steps provided.
 1) Clone repo:
 
 type:
-git clone https://github.com/nrbrase/ValueCentric-DS.git
+git clone https://github.com/nrbrase/ValueCentric-DS.git (hit return)
 
 2) Using terminal navigate to directory you cloned to:
 
 type:
-cd ValueCentric-DS
+cd ValueCentric-DS (hit return)
 
 3) Compile java code:
 
 type:
-javac Driver.java
+javac Driver.java (hit return)
 
 4) Run java driver
 
 type: 
-java Driver
+java Driver (hit return)
 
 5) Enter website to scrape
 6) Click to gather info
