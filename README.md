@@ -6,12 +6,12 @@ Assuming you have a mac, open terminal and follow the steps provided.
 1) Clone repo:
 
 type:
-git clone https://github.com/nrbrase/ValueCentric-DS.git (hit return)
+git clone https://github.com/nrbrase/Talend-DS.git (hit return)
 
 2) Using terminal navigate to directory you cloned to:
 
 type:
-cd ValueCentric-DS (hit return)
+cd Talend-DS (hit return)
 
 3) Compile java code:
 
