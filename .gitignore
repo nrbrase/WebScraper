@@ -1,5 +1,14 @@
 # Files that will be ignored go here
 
-*.JETmitters
+
 *.Java
 *.metadata
+*.JETEmitters/
+.metadata_orig/
+DS/.project
+DS/.settings/mappings/
+DS/.settings/org.eclipse.core.resources.prefs
+DS/.settings/org.talend.core.runtime.prefs
+DS/code/
+DS/sqlPatterns/
+DS/talend.project
