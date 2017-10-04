@@ -1,7 +1,6 @@
 # Files that will be ignored go here
 
 
-*.Java
 *.metadata
 *.JETEmitters/
 .metadata_orig/
