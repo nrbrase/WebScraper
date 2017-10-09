@@ -8,20 +8,8 @@ Assuming you have a mac, open terminal and follow the steps provided.
 type:
 git clone https://github.com/nrbrase/Talend-DS.git (hit return)
 
-2) Using terminal navigate to directory you cloned to:
+2) Navigate to Talend-DS folder and open it
 
-type:
-cd Talend-DS (hit return)
+3) Double-click on the file WebScraper.jar
 
-3) Compile java code:
-
-type:
-javac Driver.java (hit return)
-
-4) Run java driver
-
-type: 
-java Driver (hit return)
-
-5) Enter website to scrape
-6) Click to gather info
+4) You are now able to use the web scraper, click Go!
