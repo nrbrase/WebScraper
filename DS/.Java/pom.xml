@@ -10,12 +10,16 @@
   <url>http://www.talend.org/</url>
   <modules>
     <module>pom_routines.xml</module>
-    <module>pom_First_Job_0.1.xml</module>
   </modules>
   <properties>
     <encoding>UTF-8</encoding>
   </properties>
   <dependencies>
+    <dependency>
+      <groupId>org.talend.libraries</groupId>
+      <artifactId>log4j-1.2.16</artifactId>
+      <version>6.0.0</version>
+    </dependency>
     <dependency>
       <groupId>org.talend.libraries</groupId>
       <artifactId>dom4j-1.6.1</artifactId>
@@ -25,26 +29,6 @@
       <groupId>org.talend.libraries</groupId>
       <artifactId>jsoup-1.10.3</artifactId>
       <version>6.0.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.talend.libraries</groupId>
-      <artifactId>log4j-1.2.16</artifactId>
-      <version>6.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.talend.libraries</groupId>
-      <artifactId>talend_file_enhanced_20070724</artifactId>
-      <version>6.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.talend.libraries</groupId>
-      <artifactId>talendcsv</artifactId>
-      <version>6.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>org.talend.libraries</groupId>
-      <artifactId>jxl</artifactId>
-      <version>6.0.0</version>
     </dependency>
   </dependencies>
   <build>
