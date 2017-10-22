@@ -39,10 +39,10 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 	
 	public GUI() throws IOException {
 		//Frame
-		JFrame frame = new JFrame();
+		JFrame frame = new JFrame("WebScraper");
 		frame.setLayout(new FlowLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		int height = 500, width = 500;
+		int height = 250, width = 500;
 		frame.setSize(width, height);
 		frame.setLocation(430, 100);
 		
@@ -86,12 +86,12 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 		}
 		
 		public void actionPerformed(ActionEvent e) {	
-			JFrame waitWin = new JFrame();
+			JFrame waitWin = new JFrame("Gathering addresses, store numbers and phone numbers from "+ STATE+".");
 			waitWin.setLayout(new GridBagLayout());
 			JPanel panel2 = new JPanel();
-			JLabel jlabel2 = new JLabel("Gathering addresses, store numbers and phone numbers from "+ STATE+". Please wait, or close this window to quit.");
-			jlabel2.setFont(new Font("Verdana",1,12));
-			panel2.add(jlabel2);
+			//JLabel jlabel2 = new JLabel("Gathering addresses, store numbers and phone numbers from "+ STATE+". Please wait, or close this window to quit.");
+			//jlabel2.setFont(new Font("Verdana",1,12));
+			//panel2.add(jlabel2);
 			waitWin.add(panel2, new GridBagConstraints());
 			waitWin.setSize(760, 150);
 			waitWin.setLocationRelativeTo(null);
