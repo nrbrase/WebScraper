@@ -6,25 +6,27 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 import org.jsoup.nodes.Element;
 
-public class readAllLinks{ 
+public class readAllLinks{
 
 	static JFrame _window;
-	
+
 	public static HashSet<String> addresses = new HashSet<String>();
 	public static HashSet<String> phoneAndStoreNumbers = new HashSet<String>();
 	public static Set<String> eachURL = new HashSet<String>();
 	public static String rootsite;
 	public static PrintWriter outStream;
-	
+
 	public static void main(String[] args) throws IOException {
 			GUI gui = new GUI();
 		}
-	
+
 	protected void get_links(String url) {
 		try {
 			Document doc = Jsoup.connect(url).get();
@@ -51,15 +53,15 @@ public class readAllLinks{
 		Elements links = doc.select("a[href]");		//Selects "href" from html code on site
 		ArrayList<String> linkCon = new ArrayList(); //Container of links for dropdown menu
 		for(Element link: links){
-			String a = link.attr("href");		
-			if(a.contains("locations"))			//finds everylink with a location 
+			String a = link.attr("href");
+			if(a.contains("locations"))			//finds everylink with a location
 			{
 				linkCon.add(a.substring(38));	//cuts out everything besides state name
 			}
 		}
 		return linkCon;
 	}
-	private void getImportantInfo(String url) throws IOException{	
+	private void getImportantInfo(String url) throws IOException{
 		Document document = Jsoup.connect(url).get();
 		Elements address = document.getElementsByClass("store-address");
 		String addString = address.text();
@@ -68,8 +70,6 @@ public class readAllLinks{
 		String phoneString = phoneNumber.text();
 		phoneAndStoreNumbers.add(phoneString);
 		System.out.println(phoneString);
-	
+
 	}
 }
-
-
