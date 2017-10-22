@@ -52,7 +52,7 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 		frame.add(panel);
 
 		//Labeling
-		JLabel label = new JLabel("Select state and click OK");
+		JLabel label = new JLabel("Select state and click GO");
 		label.setAlignmentX((Component.CENTER_ALIGNMENT));
 		label.setVisible(true);
 		panel.add(label);
