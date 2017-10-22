@@ -57,6 +57,7 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 		label.setVisible(true);
 		panel.add(label);
 		
+		
 		//Combo box, starts at index 0
 		listOfStates.setVisible(true);
 		listOfStates.setSelectedIndex(0);
@@ -69,6 +70,7 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 		button.addActionListener(this);	
 		button.setAlignmentX((Component.CENTER_ALIGNMENT));
 		panel.add(button);
+		
 		
 		//frame.pack();
 		frame.setVisible(true);
@@ -83,8 +85,19 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 			STATE = (String)box.getSelectedItem();
 		}
 		
-		public void actionPerformed(ActionEvent e) {
-				
+		public void actionPerformed(ActionEvent e) {	
+			JFrame waitWin = new JFrame();
+			waitWin.setLayout(new GridBagLayout());
+			JPanel panel2 = new JPanel();
+			JLabel jlabel2 = new JLabel("Gathering addresses, store numbers and phone numbers from "+ STATE+". Please wait, or close this window to quit.");
+			jlabel2.setFont(new Font("Verdana",1,12));
+			panel2.add(jlabel2);
+			waitWin.add(panel2, new GridBagConstraints());
+			waitWin.setSize(760, 150);
+			waitWin.setLocationRelativeTo(null);
+			waitWin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			waitWin.setVisible(true);
+			
 				String filename = "gatheredData.txt";
 				try {
 					outStream = new PrintWriter(new FileWriter(filename, true));
@@ -95,7 +108,7 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 				readAllLinks obj = new readAllLinks();
 				rootsite = "https://www.cvs.com/store-locator/cvs-pharmacy-locations/";
 				obj.get_links(ROOTSITE+'/'+STATE);
-					
+				
 
 				Iterator<String> it1 = addresses.iterator();
 				Iterator<String> it2 = phoneAndStoreNumbers.iterator();
@@ -104,16 +117,16 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 					outStream.println(it1.next());
 					outStream.println(it2.next());
 				}
-
+			
 				outStream.close();
 				JFrame frame1 = new JFrame();
 				frame1.setLayout(new GridBagLayout());
 				JPanel panel1 = new JPanel();
-				JLabel jlabel1 = new JLabel("CVS addresses, store numbers and phone numbers gathered from USA. You may now close this window.");
+				JLabel jlabel1 = new JLabel("CVS addresses, store numbers and phone numbers gathered from "+ STATE +". You may now close this window.");
 				jlabel1.setFont(new Font("Verdana",1,12));
 				panel1.add(jlabel1);
 				frame1.add(panel1, new GridBagConstraints());
-				frame1.setSize(750, 200);
+				frame1.setSize(750, 150);
 				frame1.setLocationRelativeTo(null);
 				frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				frame1.setVisible(true);
