@@ -52,7 +52,7 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 		frame.add(panel);
 
 		//Labeling
-		JLabel label = new JLabel("Select state and click GO");
+		JLabel label = new JLabel("Store to target: CVS - Select state and click GO");
 		label.setAlignmentX((Component.CENTER_ALIGNMENT));
 		label.setVisible(true);
 		panel.add(label);
@@ -86,7 +86,7 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			JFrame waitWin = new JFrame("Gathering addresses, store numbers and phone numbers from "+ STATE+".");
+			JFrame waitWin = new JFrame("Gathering addresses, store numbers and phone numbers from "+ STATE+", please wait.");
 			waitWin.setLayout(new GridBagLayout());
 			JPanel panel2 = new JPanel();
 			//JLabel jlabel2 = new JLabel("Gathering addresses, store numbers and phone numbers from "+ STATE+". Please wait, or close this window to quit.");
