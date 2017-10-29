@@ -13,3 +13,5 @@ git clone https://github.com/nrbrase/WebScraper.git (hit return)
 3) Double-click on the file WebScraper.jar
 
 4) You are now able to use the web scraper, select state and click GO!
+
+This is the Tian's edit.
