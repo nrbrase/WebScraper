@@ -37,6 +37,15 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 	String STATE = "Alabama";  						//initializing global var for state
 	final JComboBox listOfStates = new JComboBox(new Vector(stateList));
 
+
+	final String[] targetList = {
+		"CVS",
+		"Rite Aid",
+		"Wegman's"
+	};
+	final JComboBox<String> listOfTargets = new JComboBox<String>(targetList);
+	
+
 	public GUI() throws IOException {
 		//Frame
 		JFrame frame = new JFrame("WebScraper");
@@ -52,11 +61,17 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 		frame.add(panel);
 
 		//Labeling
-		JLabel label = new JLabel("Store to target: CVS - Select state and click GO");
+		JLabel label = new JLabel("Select a store to target, then select state and click GO");
 		label.setAlignmentX((Component.CENTER_ALIGNMENT));
 		label.setVisible(true);
 		panel.add(label);
 
+		//Dropdown box for targets
+		listOfTargets.setVisible(true);
+		listOfTargets.setSelectedIndex(0);
+		listOfTargets.addItemListener(this);
+		listOfTargets.setAlignmentX((Component.CENTER_ALIGNMENT));
+		panel.add(listOfTargets);
 
 		//Combo box, starts at index 0
 		listOfStates.setVisible(true);
