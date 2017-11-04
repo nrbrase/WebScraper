@@ -3,11 +3,10 @@ package webby;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -16,15 +15,15 @@ import org.jsoup.nodes.Element;
 public class readAllLinks{ 
 
 	static JFrame _window;
-	
-	public static HashSet<String> addresses = new HashSet<String>();
-	public static HashSet<String> phoneAndStoreNumbers = new HashSet<String>();
+	public static HashMap<Integer, String> allInfo = new HashMap<Integer,String>();
 	public static Set<String> eachURL = new HashSet<String>();
 	public static String rootsite;
 	public static PrintWriter outStream;
+	public static int _key;
 	
 	public static void main(String[] args) throws IOException {
 			GUI gui = new GUI();
+			_key = 0;
 		}
 	
 	protected void get_links(String url) {
@@ -51,7 +50,7 @@ public class readAllLinks{
 	protected ArrayList<String> getStates(String url) throws IOException{
 		Document doc = Jsoup.connect(url).get();
 		Elements links = doc.select("a[href]");		//Selects "href" from html code on site
-		ArrayList<String> linkCon = new ArrayList(); //Container of links for dropdown menu
+		ArrayList<String> linkCon = new ArrayList<String>(); //Container of links for dropdown menu
 		for(Element link: links){
 			String a = link.attr("href");		
 			if(a.contains("locations"))			//finds everylink with a location 
@@ -61,16 +60,25 @@ public class readAllLinks{
 		}
 		return linkCon;
 	}
-	private void getImportantInfo(String url) throws IOException{	
+	private void getImportantInfo(String url) throws IOException{
 		Document document = Jsoup.connect(url).get();
 		Elements address = document.getElementsByClass("store-address");
 		String addString = address.text();
-		addresses.add(addString);
 		Elements phoneNumber = document.getElementsByClass("phone-number");
 		String phoneString = phoneNumber.text();
-		phoneAndStoreNumbers.add(phoneString);
-		System.out.println(phoneString);
-	
+		if(allInfo.isEmpty()){
+			allInfo.put(_key, addString);
+			allInfo.put(_key+1, phoneString);
+		}
+		else if(allInfo.get(_key).equals(addString)){
+			allInfo.put(_key, addString);
+			allInfo.put(_key+1, phoneString);
+		}
+		else{
+			allInfo.put(_key+2, addString);
+			allInfo.put(_key+3, phoneString);
+			_key = _key+2;
+		}
 	}
 }
 
