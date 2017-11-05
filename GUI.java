@@ -94,7 +94,24 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener{
             button.setAlignmentX((Component.CENTER_ALIGNMENT));
             panel.add(button);
             
-            
+            /*
+             * Finished button
+             * Created by @drgaglia
+             * For CSE442 collaboration phase
+             * Issue
+             */
+            JButton finishedButton = new JButton("Finished");
+            finishedButton.addActionListener(new ActionListener() {
+
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					System.exit(0);	
+				}
+            	
+            });
+            finishedButton.setAlignmentX((Component.CENTER_ALIGNMENT));
+            panel.add(finishedButton);
+			
             //window stuff
             _window.setVisible(true);
             
