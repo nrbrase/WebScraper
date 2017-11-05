@@ -234,7 +234,5 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener{
         waitWin.setVisible(false);
     }
     
-    public Collection<Runnable> getCities() {
-        return cities;
-    }
 }
+
