@@ -13,6 +13,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
 import javax.swing.BoxLayout;
@@ -21,10 +22,15 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 public class GUI extends readAllLinks implements ActionListener, ItemListener {
 
 	static JFrame _window;
+	public static HashMap<Integer, String> allInfo = new HashMap<Integer,String>();
+	public static int _key;
 
 	public PrintWriter outStream;
 	readAllLinks obj = new readAllLinks();
@@ -43,6 +49,7 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 	 	*/
 	 
 	  	public GUI() throws IOException {
+	  		_key = 0;
 	  		//Frame
 	  		JFrame frame = new JFrame("WebScraper");
 	 		frame.setLayout(new FlowLayout());
@@ -57,8 +64,8 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 	  		frame.add(panel);
 	  
 	  		//Labeling
-	 		//JLabel label = new JLabel("Store to target: CVS - Select state and click GO");
-	 		JLabel label = new JLabel("Select a store to target, then select state and click GO");
+	 		JLabel label = new JLabel("Store to target: CVS - Select state and click GO");
+	 		//JLabel label = new JLabel("Select a store to target, then select state and click GO");
 	  		label.setAlignmentX((Component.CENTER_ALIGNMENT));
 	  		label.setVisible(true);
 	  		panel.add(label);
@@ -100,6 +107,29 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 			STATE = (String)box.getSelectedItem();
 		}
 
+		public void getImportantInfo(String url) throws IOException{
+			Document document = Jsoup.connect(url).get();
+			Elements address = document.getElementsByClass("store-address");
+			String addString = address.text();
+			Elements phoneNumber = document.getElementsByClass("phone-number");
+			String phoneString = phoneNumber.text();
+			if(allInfo.isEmpty()){
+				allInfo.put(_key, addString);
+				allInfo.put(_key+1, phoneString);
+			}
+			else if(allInfo.get(_key).equals(addString)){
+				allInfo.put(_key, addString);
+				allInfo.put(_key+1, phoneString);
+			}
+			else{
+				allInfo.put(_key+2, addString);
+				allInfo.put(_key+3, phoneString);
+				_key = _key+2;
+			}
+		}
+		
+		
+		
 		public void actionPerformed(ActionEvent e) {
 			JFrame waitWin = new JFrame("Gathering addresses, store numbers and phone numbers from "+ STATE+", please wait.");
 			waitWin.setLayout(new GridBagLayout());
@@ -119,8 +149,28 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 				}
 				readAllLinks obj = new readAllLinks();
 				rootsite = "https://www.cvs.com/store-locator/cvs-pharmacy-locations/";
-				obj.get_links(ROOTSITE+'/'+STATE);
-
+				ArrayList<String> stateALL;
+				try {
+					stateALL = obj.getSites(ROOTSITE+'/'+STATE);
+					ArrayList<String> stateCities = new ArrayList<String>();
+					for(String link : stateALL){
+							if(link.contains(rootsite)){
+								stateCities.add(link);
+							}
+					}
+					for(String city : stateCities){
+						try {
+							getImportantInfo(city);
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
+					
 				
 				 for(Map.Entry<Integer, String> entry:allInfo.entrySet()){    
 				        String info = entry.getValue();  
@@ -141,4 +191,4 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener {
 				frame1.setVisible(true);
 				waitWin.setVisible(false);
 			}
-}
+
