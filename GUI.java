@@ -1,6 +1,5 @@
 package webby;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -94,6 +93,7 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener{
     
     public void itemStateChanged(ItemEvent e)
     {
+
         //gets state selected from dropdown menu
         JComboBox<?> box = (JComboBox<?>)e.getSource();
         STATE = (String)box.getSelectedItem();
@@ -135,7 +135,7 @@ public class GUI extends readAllLinks implements ActionListener, ItemListener{
             e.printStackTrace();
         }
     }
-    
+
     //When a city is sent, adds it to our outfile
     @SuppressWarnings("finally")
     public void run(ArrayList<String> stateCities) throws IOException
