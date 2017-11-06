@@ -11,7 +11,6 @@ import org.jsoup.nodes.Element;
 
 public class readAllLinks{
     
-    static JFrame _window;
     public static String rootsite;
     public static PrintWriter outStream;
     
